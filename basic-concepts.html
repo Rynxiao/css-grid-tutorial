@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Basic Concepts</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    .title {
+      padding: 20px 0;
+      text-align: center;
+      font-size: 36px;
+    }
+    .custom {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 1em;
+    }
+    .main-title {
+      padding: 10px 0 10px 20px;
+      margin: 0 20px;
+      font-size: 26px;
+      border-left: 4px solid orange;
+      background-color: #464646;
+      color: snow;
+    }
+    .one {
+      background-color: aliceblue;
+    }
+    .two {
+      background-color: antiquewhite;
+    }
+    .three {
+      background-color: aqua;
+    }
+    .four {
+      background-color: aquamarine;
+    }
+    .five {
+      background-color: azure;
+    }
+    .six {
+      background-color: blueviolet;
+    }
+    .description {
+      text-indent: 24px;
+      line-height: 24px;
+      margin-top: 20px;
+      padding: 0 20px;
+    }
+    .highlight {
+      color: #fb8f00;
+      padding: 0 4px;
+    }
+    .wrapper {
+      display: grid;
+      padding: 20px;
+    }
+    .wrapper-tracks {
+      grid-template-columns: repeat(3, 1fr);
+      grid-auto-rows: minmax(100px, auto);
+    }
+    .one {
+      grid-column-start: 1;
+      grid-column-end: 4;
+      grid-row-start: 1;
+      grid-row-end: 3;
+    }
+    .two {
+      grid-column-start: 1;
+      grid-row-start: 3;
+      grid-row-end: 5;
+    }
+    .cell {
+      border-radius: 0;
+      border-style: dotted;
+    }
+    .cell:nth-child(1) {
+      background-color: aqua;
+    }
+    .area {
+      grid-column: 1 / 3;
+      grid-row: 1 / 3;
+    }
+    .gutter {
+      row-gap: 10px;
+      column-gap: 20px;
+    }
+    .z-index-1 {
+      grid-column: 1 / 3;
+      grid-row: 1;
+      background-color: aliceblue;
+    }
+    .z-index-2 {
+      grid-column: 2 / 4;
+      grid-row: 1 / 3;
+      background-color: antiquewhite;
+    }
+  </style>
+</head>
+<body>
+  <div class="title">Basic Concepts</div>
+  <div class="main-title">Grid Container</div>
+  <p class="description">
+    在需要的容器上定义<span class="highlight">display: grid | inline-grid</span>
+    即可，这样在这个容器下的第一级子元素就会变成<span class="highlight">grid items</span>
+  </p>
+  <div class="wrapper">
+    <div class="custom">One</div>
+    <div class="custom">Two
+      <p>I have some more content in.</p>
+      <p>This makes me taller than 100 pixels.</p>    
+    </div>
+    <div class="custom">Three</div>
+    <div class="custom">Four</div>
+    <div class="custom">Five</div>
+  </div>
+  <div class="main-title">Grid Tracks</div>
+  <p class="description">
+    <span class="highlight">tracks</span>就相当于<span class="highlight">table</span>中的行和列，下面通过定义
+    <span class="highlight">grid-template-columns: repeat(3, 1fr);</span>定义了一个3列的grid，以及<span class="highlight">grid-auto-rows: minmax(100px, auto);</span>
+    来根据当前的子项目的个数来确定有多少行
+  </p>
+  <div class="wrapper wrapper-tracks">
+    <div class="custom">One</div>
+    <div class="custom">Two
+      <p>I have some more content in.</p>
+      <p>This makes me taller than 100 pixels.</p>
+    </div>
+    <div class="custom">Three</div>
+    <div class="custom">Four</div>
+    <div class="custom">Five</div>
+  </div>
+  <div class="main-title">Grid Lines</div>
+  <p class="description">
+    如果通过<span class="highlight">grid-template-columns</span>以及<span class="highlight">grid-template-rows</span>，那么就隐式地确定了每条线，分别从上到下为<span class="highlight">column</span>
+    从左到右（或者从右到左）为<span class="highlight">row</span>，编号分别从小到达(1, 2, 3, 4, 5...)
+  </p>
+  <div class="wrapper wrapper-tracks">
+    <div class="custom one">One</div>
+    <div class="custom two">Two
+      <p>I have some more content in.</p>
+      <p>This makes me taller than 100 pixels.</p>  
+    </div>
+    <div class="custom three">Three</div>
+    <div class="custom four">Four</div>
+    <div class="custom five">Five</div>
+  </div>
+  <div class="main-title">Grid Cells</div>
+  <p class="description">
+    简单理解为<span class="highlight">table</span>中的单元格
+  </p>
+  <div class="wrapper wrapper-tracks">
+    <div class="custom cell">One</div>
+    <div class="custom cell">Two</div>
+    <div class="custom cell">Three</div>
+    <div class="custom cell">Four</div>
+    <div class="custom cell">Five</div>
+    <div class="custom cell">Six</div>
+  </div>
+  <div class="main-title">Grid Areas</div>
+  <p class="description">
+    可以通过规定一个<span class="highlight">item</span>的起始行和起始列来规定一个<span class="highlight">area</span>，<b>注意：</b><span class="highlight">area</span>必须为一个
+    规则的举行，而不能为一个类似于<span class="highlight">L</span>形状的图形
+  </p>
+  <div class="wrapper wrapper-tracks">
+    <div class="custom cell area">One</div>
+    <div class="custom cell">Five</div>
+    <div class="custom cell">Six</div>
+  </div>
+  <div class="main-title">Grid Gutters</div>
+  <p class="description">
+    类似于表格中的<span class="highlight">colspan</span>以及<span class="highlight">rowspan</span>
+  </p>
+  <div class="wrapper wrapper-tracks gutter">
+      <div class="custom">One</div>
+      <div class="custom">Two</div>
+      <div class="custom">Three</div>
+      <div class="custom">Four</div>
+      <div class="custom">Five</div>
+      <div class="custom">Six</div>
+  </div>
+  <div class="main-title">Grid z-index</div>
+  <p class="description">
+    类似于<span class="highlight">position: absolute;</span>绝对定位之后的层级，后面渲染的item会覆盖前面的，因此下例中的item为<span class="highlight">Two</span>的会覆盖在<span class="highlight">One</span>上
+  </p>
+  <div class="wrapper wrapper-tracks">
+      <div class="custom z-index-1">One</div>
+      <div class="custom z-index-2">Two</div>
+      <div class="custom">Three</div>
+      <div class="custom">Four</div>
+      <div class="custom">Five</div>
+      <div class="custom">Six</div>
+  </div>
+  <p class="description" style="margin-top: 0;">
+      调整item1的index之后<span class="highlight">z-index: 2;</span>，会看到item1会覆盖在item2上面
+  </p>
+  <div class="wrapper wrapper-tracks">
+      <div class="custom z-index-1" style="z-index: 2;">One</div>
+      <div class="custom z-index-2" style="z-index: 1;">Two</div>
+      <div class="custom">Three</div>
+      <div class="custom">Four</div>
+      <div class="custom">Five</div>
+      <div class="custom">Six</div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Basic example</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    .title {
+      padding: 20px 0;
+      text-align: center;
+      font-size: 36px;
+    }
+    .wrapper {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 10px;
+      grid-auto-rows: minmax(100px, auto);
+    }
+    .one {
+      grid-column: 1 / 3;
+      grid-row: 1;
+      background-color: aliceblue;
+    }
+    .two {
+      grid-column: 2 / 4;
+      grid-row: 1 / 3;
+      background-color: antiquewhite;
+    }
+    .three {
+      grid-column: 1;
+      grid-row: 2 / 5;
+      background-color: aqua;
+    }
+    .four {
+      grid-column: 3;
+      grid-row: 3;
+      background-color: aquamarine;
+    }
+    .five {
+      grid-column: 2;
+      grid-row: 4;
+      background-color: azure;
+    }
+    .six {
+      grid-column: 3;
+      grid-row: 4;
+      background-color: blueviolet;
+    }
+    .custom {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 1em;
+    }
+  </style>
+</head>
+<body>
+  <div class="title">Basic Example</div>
+  <div class="wrapper">
+    <div class="custom one">One</div>
+    <div class="custom two">Two</div>
+    <div class="custom three">Three</div>
+    <div class="custom four">Four</div>
+    <div class="custom five">Five</div>
+    <div class="custom six">Six</div>
+  </div>
+</body>
+</html>
