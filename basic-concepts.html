@@ -7,6 +7,10 @@
   <title>Basic Concepts</title>
   <link rel="stylesheet" href="./common.css">
   <style>
+    .sure-grid {
+      /* grid-template-rows: 100px 50px 100px; */
+      grid-template-columns: 200px 200px 200px;
+    }
     .one {
       grid-column-start: 1;
       grid-column-end: 4;
@@ -74,6 +78,16 @@
       <p>I have some more content in.</p>
       <p>This makes me taller than 100 pixels.</p>
     </div>
+    <div class="custom">Three</div>
+    <div class="custom">Four</div>
+    <div class="custom">Five</div>
+  </div>
+  <p class="description">
+    使用明确的行数和列数来确定这个网格的布局
+  </p>
+  <div class="wrapper sure-grid">
+    <div class="custom">One</div>
+    <div class="custom">Two</div>
     <div class="custom">Three</div>
     <div class="custom">Four</div>
     <div class="custom">Five</div>
