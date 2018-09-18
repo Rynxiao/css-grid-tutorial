@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Relationship of grid layout to other layout</title>
+  <link rel="stylesheet" href="./common.css">
+  <style>
+    .flex-wrapper {
+      flex-wrap: wrap;
+    }
+    .flex-wrapper > div {
+      flex: 1 1 200px;
+    }
+    .auto-fill {
+      grid-template-columns: repeat(auto-fill, 200px);
+    }
+    .auto-fill-min-max {
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+    .positioned {
+      grid-template-columns: repeat(4,1fr);
+      grid-auto-rows: 200px;
+      grid-gap: 20px;
+      position: relative;
+    }
+    .box3 {
+      grid-column-start: 2;
+      grid-column-end: 4;
+      grid-row-start: 1;
+      grid-row-end: 3;
+      position: absolute;
+      top: 40px;
+      left: 40px;
+    }
+    .box1 {
+      grid-column-start: 1;
+      grid-column-end: 4;
+    }
+    .contents {
+      display: contents;
+    }
+    .nested {
+      border: 1px solid cadetblue;
+      padding: 5px;
+      border-radius: 3px;
+      background-color: aqua;
+    }
+  </style>
+</head>
+<body>
+  <div class="title">Relationship of grid layout to other layout</div>
+  <div class="main-title">Grid and flexbox</div>
+  <p class="description">
+    如果屏幕上有很多剩余的空间，<span class="highlight">flex</span>布局会均分成5列，而<span class="highlight">grid</span>布局则会始终为3列，并且余下的两个item也长度也
+    相同，而如果屏幕宽度调整为小于200时，<span class="highlight">flex</span>布局会弹性地变为1列，但是<span class="highlight">grid</span>布局始终未3列
+  </p>
+  <div class="sub-title">Flexbox Layout(Content Out)</div>
+  <div class="flex-wrapper">
+    <div class="custom">One</div>
+    <div class="custom">Two</div>
+    <div class="custom">Three</div>
+    <div class="custom">Four</div>
+    <div class="custom">Five</div>    
+  </div>
+  <div class="sub-title">Grid Layout(Layout In)</div>
+  <div class="grid-wrapper">
+    <div class="custom">One</div>
+    <div class="custom">Two</div>
+    <div class="custom">Three</div>
+    <div class="custom">Four</div>
+    <div class="custom">Five</div>    
+  </div>
+  <div class="sub-title">auto-fill</div>
+  <p class="description">
+    自始至终，item的长度为200px，在屏幕变小于200的时候，会变成单独的行，但是长度依旧保持在200px
+  </p>
+  <div class="grid-wrapper auto-fill">
+    <div class="custom">One</div>
+    <div class="custom">Two</div>
+    <div class="custom">Three</div>
+  </div>
+  <div class="sub-title">auto-fill & minmax(200px, 1fr)</div>
+  <p class="description">
+    和<span class="highlight">flex</span>布局有一点不同的是，在最开始的分配的时候<span class="highlight">grid</span>布局会优先划分布局，即会优先规定出屏幕中可以最大容忍出
+    多少个符合条件（这里是最小为200px， 最大为1fr）的item数量，然后依次填充
+  </p>
+  <div class="grid-wrapper auto-fill-min-max">
+    <div class="custom">One</div>
+    <div class="custom">Two</div>
+    <div class="custom">Three</div>
+  </div>
+  <div class="main-title">Grid and absolutely positioned elements</div>
+  <p class="description">
+    如果父容器有定位标识<span class="highlight">relative</span> Or <span class="highlight">absolute</span>等，那么下面的子item会根据原始它们应该布局的位置定位，反之如果父容器没有
+    定位标识，那么应用了<span class="highlight">position: absolute;</span>会脱离gird布局，并且按照CSS传统的方式布局。
+  </p>
+  <div class="grid-wrapper positioned">
+    <div class="custom">One</div>
+    <div class="custom">Two</div>
+    <div class="custom box3">This block is absolutely positioned. In this example the grid container is the containing block and so the absolute positioning offset values are calculated in from the outer edges of the area it has been placed into.</div>
+    <div class="custom">Four</div>
+  </div>
+  <div class="main-title">Grid and display: contents</div>
+  <p class="description">
+    <span class="highlight">display: contens;</span>会将应用在这个元素下子元素或伪元素提升到与父元素相同的层级，就好像是父元素消失了一样。下面的这个例子中，嵌套的子元素会以正常的块级元素显示
+  </p>
+  <div class="grid-wrapper">
+    <div class="custom box1">
+      <div class="nested">Nested A</div>
+      <div class="nested">Nested B</div>
+      <div class="nested">Nested C</div>
+    </div>
+    <div class="custom">Two</div>
+    <div class="custom">Three</div>
+    <div class="custom">Four</div>
+    <div class="custom">Five</div>
+  </div>
+  <p class="description">
+    而当给<span class="highlight">box1</span>应用了<span class="highlight">display: contens;</span>之后，就会发现子元素也应用了<span class="highlight">grid</span>布局
+  </p>
+  <div class="grid-wrapper">
+    <div class="custom box1 contents">
+      <div class="nested">Nested A</div>
+      <div class="nested">Nested B</div>
+      <div class="nested">Nested C</div>
+    </div>
+    <div class="custom">Two</div>
+    <div class="custom">Three</div>
+    <div class="custom">Four</div>
+    <div class="custom">Five</div>
+  </div>
+</body>
+</html>
