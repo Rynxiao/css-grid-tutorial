@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Box alignment in CSS Grid Layout</title>
+  <link rel="stylesheet" href="./common.css">
+  <style>
+    .wrapper {
+      display: grid;
+      padding: 20px;
+      grid-template-columns: repeat(8, 1fr);
+      grid-gap: 10px;
+      grid-auto-rows: 100px;
+      grid-template-areas: 
+        "a a a a b b b b"
+        "a a a a b b b b"
+        "c c c c d d d d"
+        "c c c c d d d d";
+    }
+    .item1 {
+      grid-area: a;
+      background-color: aqua;
+    }
+    .item2 {
+      grid-area: b;
+      background-color: aqua;
+    }
+    .item3 {
+      grid-area: c;
+      background-color: aqua;
+    }
+    .item4 {
+      grid-area: d;
+      background-color: aqua;
+    }
+    label {
+      margin-left: 10px;
+    }
+    .options {
+      margin: 20px 20px 0 20px;
+    }
+    .bwrapper {
+      display: grid;
+      margin: 20px;
+      grid-template-columns: repeat(3, 100px);
+      grid-template-rows: repeat(3,100px);
+      height: 500px;
+      width: 500px;
+      grid-gap: 10px;
+      grid-template-areas: 
+        "a a b"
+        "a a b"
+        "c d d";
+      border: 1px solid #757575;
+      padding: 20px;
+    }
+    .bitem1 {
+      grid-area: a;
+      background-color: aqua;
+    }
+    .bitem2 {
+      grid-area: b;
+      background-color: aqua;
+    }
+    .bitem3 {
+      grid-area: c;
+      background-color: aqua;
+    }
+    .bitem4 {
+      grid-area: d;
+      background-color: aqua;
+    }
+  </style>
+</head>
+<body>
+  <div class="title">Box alignment in CSS Grid Layout</div>
+  <div class="options">
+    <label for="alignItems">align-items</label>
+    <select name="align-items" id="alignItems">
+      <option value="auto">auto</option>
+      <option value="normal">normal</option>
+      <option value="start">start</option>
+      <option value="end">end</option>
+      <option value="center">center</option>
+      <option value="stretch">stretch</option>
+      <option value="baseline">baseline</option>
+      <option value="first baseline">first baseline</option>
+      <option value="last baseline">last baseline</option>
+    </select>
+  </div>
+  <div class="options">
+    <label for="item1">item1</label>
+    <select name="item1" id="item1">
+      <option value="auto">auto</option>
+      <option value="normal">normal</option>
+      <option value="start">start</option>
+      <option value="end">end</option>
+      <option value="center">center</option>
+      <option value="stretch">stretch</option>
+      <option value="baseline">baseline</option>
+      <option value="first baseline">first baseline</option>
+      <option value="last baseline">last baseline</option>
+    </select>
+    <label for="item2">item2</label>
+    <select name="item2" id="item2">
+      <option value="auto">auto</option>
+      <option value="normal">normal</option>
+      <option value="start">start</option>
+      <option value="end">end</option>
+      <option value="center">center</option>
+      <option value="stretch">stretch</option>
+      <option value="baseline">baseline</option>
+      <option value="first baseline">first baseline</option>
+      <option value="last baseline">last baseline</option>
+    </select>
+    <label for="item3">item3</label>
+    <select name="item3" id="item3">
+      <option value="auto">auto</option>
+      <option value="normal">normal</option>
+      <option value="start">start</option>
+      <option value="end">end</option>
+      <option value="center">center</option>
+      <option value="stretch">stretch</option>
+      <option value="baseline">baseline</option>
+      <option value="first baseline">first baseline</option>
+      <option value="last baseline">last baseline</option>
+    </select>
+    <label for="item4">item4</label>
+    <select name="item4" id="item4">
+      <option value="auto">auto</option>
+      <option value="normal">normal</option>
+      <option value="start">start</option>
+      <option value="end">end</option>
+      <option value="center">center</option>
+      <option value="stretch">stretch</option>
+      <option value="baseline">baseline</option>
+      <option value="first baseline">first baseline</option>
+      <option value="last baseline">last baseline</option>
+    </select>
+  </div>
+  <div class="wrapper" id="wrapper">
+    <div id="item1wrapper" class="custom item1">Item 1</div>
+    <div id="item2wrapper" class="custom item2">Item 2</div>
+    <div id="item3wrapper" class="custom item3">Item 3</div>
+    <div id="item4wrapper" class="custom item4">Item 4</div>
+  </div>
+  <div class="options">
+    <label for="alignContent">align-content</label>
+    <select name="align-content" id="alignContent">
+      <option value="normal">normal</option>
+      <option value="start">start</option>
+      <option value="end">end</option>
+      <option value="center">center</option>
+      <option value="stretch">stretch</option>
+      <option value="space-around">space-around</option>
+      <option value="space-between">space-between</option>
+      <option value="space-evenly">space-evenly</option>
+      <option value="baseline">baseline</option>
+      <option value="first baseline">first baseline</option>
+      <option value="last baseline">last baseline</option>
+    </select>
+  </div>
+  <div class="bwrapper" id="bwrapper">
+    <div id="bitem1wrapper" class="custom bitem1">Item 1</div>
+    <div id="bitem2wrapper" class="custom bitem2">Item 2</div>
+    <div id="bitem3wrapper" class="custom bitem3">Item 3</div>
+    <div id="bitem4wrapper" class="custom bitem4">Item 4</div>
+  </div>
+  <script>
+    var $alignItems = document.querySelector('#alignItems')
+    var $alignContent = document.querySelector('#alignContent')
+    var $item1 = document.querySelector('#item1')
+    var $item2 = document.querySelector('#item2')
+    var $item3 = document.querySelector('#item3')
+    var $item4 = document.querySelector('#item4')
+    var $wrapper = document.querySelector('#wrapper')
+    var $bwrapper = document.querySelector('#bwrapper')
+    var $item1wrapper = document.querySelector('#item1wrapper')
+    var $item2wrapper = document.querySelector('#item2wrapper')
+    var $item3wrapper = document.querySelector('#item3wrapper')
+    var $item4wrapper = document.querySelector('#item4wrapper')
+
+    $alignItems.value = 'stretch'
+    $item1.value = 'stretch'
+    $item2.value = 'stretch'
+    $item3.value = 'stretch'
+    $item4.value = 'stretch'
+    $alignItems.addEventListener('change', function(evt) {
+      $wrapper.style = 'align-items: ' + evt.target.value
+    })
+    $alignContent.addEventListener('change', function(evt) {
+      $bwrapper.style = 'align-content: ' + evt.target.value
+    })
+    $item1.addEventListener('change', function(evt) {
+      $item1wrapper.style = 'align-self: ' + evt.target.value
+    })
+    $item2.addEventListener('change', function(evt) {
+      $item2wrapper.style = 'align-self: ' + evt.target.value
+    })
+    $item3.addEventListener('change', function(evt) {
+      $item3wrapper.style = 'align-self: ' + evt.target.value
+    })
+    $item4.addEventListener('change', function(evt) {
+      $item4wrapper.style = 'align-self: ' + evt.target.value
+    })
+  </script>
+</body>
+</html>

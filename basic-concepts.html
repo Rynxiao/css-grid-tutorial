@@ -30,8 +30,9 @@
       background-color: aqua;
     }
     .area {
-      grid-column: 1 / 3;
-      grid-row: 1 / 3;
+      /* grid-column: 1 / 3;
+      grid-row: 1 / 3; */
+      grid-area: 1 / 1 / 3 / 3;
     }
     .gutter {
       row-gap: 10px;
@@ -46,6 +47,29 @@
       grid-column: 2 / 4;
       grid-row: 1 / 3;
       background-color: antiquewhite;
+    }
+    .container {
+      display: grid;
+      padding: 20px;
+      grid-template-columns: repeat(3, 1fr);
+      grid-auto-rows: minmax(100px, auto);
+      grid-gap: 10px;
+      grid-template-areas: 
+      "header header header"
+      "siderbar main main"
+      "footer footer footer"
+    }
+    .header {
+      grid-area: header;
+    }
+    .siderbar {
+      grid-area: siderbar;    
+    }
+    .main {
+      grid-area: main;    
+    }
+    .footer {
+      grid-area: footer;
     }
   </style>
 </head>
@@ -128,6 +152,15 @@
     <div class="custom cell area">One</div>
     <div class="custom cell">Five</div>
     <div class="custom cell">Six</div>
+  </div>
+  <p class="description">
+    配合<span class="highlight">grid-template-area</span>使用
+  </p>
+  <div class="container">
+    <div class="custom header">header</div>
+    <div class="custom siderbar">siderbar</div>
+    <div class="custom main">main</div>
+    <div class="custom footer">footer</div>
   </div>
   <div class="main-title">Grid Gutters</div>
   <p class="description">
